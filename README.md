@@ -1,4 +1,4 @@
-# PYTHON-AWS LAMBDA-SERVERLESS FRAMEWORK
+# PYTHON + AWS LAMBDA + SERVERLESS FRAMEWORK
 
 ## Requisitos previos
 
@@ -25,3 +25,6 @@ serverless deploy
 
 # Verificar información del servicio desplegado
 serverless info
+
+
+***Nicolas Hurtado C***
