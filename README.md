@@ -4,12 +4,12 @@
 
 Antes de comenzar, asegúrate de tener los siguientes requisitos:
 
-- Node.js y npm instalados en tu sistema
+- Node.js, npm y Docker instalados en tu sistema
 - Una cuenta de AWS con credenciales de acceso (access key y secret key)
 
 # Instalación
-npm install -g serverless
-npm install --save-dev serverless-python-requirements
+- npm install -g serverless
+- npm install --save-dev serverless-python-requirements
 
 ## Configuración de AWS
 
