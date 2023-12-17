@@ -1,0 +1,58 @@
+service: countries-info-service
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  stage: dev
+
+plugins:
+  - serverless-python-requirements
+
+
+functions:
+  getCountriesInfo:
+    tracing: true
+    name: ${sls:stage}-countries-info
+    handler: get_countries.lambda_handler
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    events:
+      - http:
+          path: /countries_info
+          method: GET
+    timeout: 30
+    memorySize: 2048
+    architecture: x86_64
+
+  
+
+
+custom:
+  bucket: ${env:BUCKET, 'countries-info-serverless'}
+  pythonRequirements:
+    dockerizePip: true
+    layer:
+      PythonRequirementsLambdaLayer:
+        name: PythonRequirementsLambdaLayer
+        description: "layer with requirements for get_countries API"
+        compatibleRuntimes:
+          - python3.9
+        compatibleArchitectures:
+          - x86_64
+       
+
+package:
+  include:
+    - get_countries.py
+    - README.md
+    - serverless.yml
+  exclude:
+    - venv/**
+    - tests/**
+    - node_modules/**
+    - __pycache__/**
+    - .env
+    - package.json
+    - package-lock.json
+    - test_local.py
